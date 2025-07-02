@@ -1,8 +1,9 @@
 import telebot
 from telebot import types
 from db import get_connection
+import time
 
-bot = telebot.TeleBot('BOT_TOKEN')
+bot = telebot.TeleBot('7974723442:AAHpqGUbqQMVOTMTupnVBy3ovICN1SiUO7c')
 user_states = {}
 
 @bot.message_handler(commands=['start'])
@@ -10,6 +11,8 @@ def handle_start(message):
     user_id = str(message.chat.id)
     conn = get_connection()
     cur = conn.cursor()
+    timestamp = int(time.time())
+    cur.execute("INSERT INTO tg (login, date, isbuy) VALUES (%s, %s, FALSE)", (user_id, timestamp))
 
     cur.execute("SELECT * FROM tg WHERE login = %s", (user_id,))
     if not cur.fetchone():
@@ -94,5 +97,5 @@ def delete_account_handler(message):
 
     user_states.pop(message.chat.id, None)
     handle_start(message) 
-        
+
 bot.infinity_polling()
