@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 from db import get_connection
 
-bot = telebot.TeleBot('7974723442:AAHpqGUbqQMVOTMTupnVBy3ovICN1SiUO7c')
+bot = telebot.TeleBot('BOT_TOKEN')
 user_states = {}
 
 @bot.message_handler(commands=['start'])
