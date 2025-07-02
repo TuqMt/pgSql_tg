@@ -3,7 +3,7 @@ from telebot import types
 from db import get_connection
 import time
 
-bot = telebot.TeleBot('7974723442:AAHpqGUbqQMVOTMTupnVBy3ovICN1SiUO7c')
+bot = telebot.TeleBot('your_code')
 user_states = {}
 
 @bot.message_handler(commands=['start'])
